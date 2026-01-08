@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Workflow App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Page Content -->
+  <main class="p-6">
+    <h1 class="text-2xl font-semibold mb-4">Workflows</h1>
+
+    <div id="content" class="grid gap-4"></div>
+    <section class="bg-white p-6 rounded shadow">
+  <h2 class="text-xl font-bold mb-4">User Management</h2>
+
+  <form id="createUserForm" class="space-y-4">
+    <input class="border p-2 w-full" placeholder="Email" />
+    <select class="border p-2 w-full">
+      <option>USER</option>
+      <option>MANAGER</option>
+      <option>ADMIN</option>
+    </select>
+    <button class="bg-blue-600 text-white px-4 py-2 rounded">
+      Create User
+    </button>
+  </form>
+</section>
+  </main>
+
+  <script type="module">
+    import { requireAuth } from './js/auth.js'
+    requireAuth()
+  </script>
+
+</body>
+</html>
