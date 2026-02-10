@@ -7,25 +7,34 @@
 </head>
 <body class="bg-gray-100">
 
-  <!-- Navbar -->
-  <a href="../navbar.html" onclick="loadPage('dashboard')">Dashboard</a>
+  <!-- Injected Navbar -->
+  <div id="navbar"></div>
 
-    <!-- Sidebarbar -->
-  <a href="../sidebar.html" onclick="loadPage('dashboard')">Dashboard</a>
+  <div class="flex">
+    <!-- Injected Sidebar -->
+    <aside id="sidebar" class="w-64"></aside>
 
-  <!-- Page Content -->
-  <main class="p-6">
-    <h1 class="text-2xl font-semibold mb-4">Workflows</h1>
-
-    <div id="content" class="grid gap-4"></div>
-  </main>
+    <!-- Page Content -->
+    <main class="flex-1 p-6">
+      <h1 class="text-2xl font-semibold mb-4">Workflows</h1>
+      <div id="content" class="grid gap-4"></div>
+    </main>
+  </div>
 
   <script type="module">
     import { requireAuth } from './js/auth.js'
     requireAuth()
-  </script>
 
-  <script src="js/jsauth.js"></script>
+    async function inject(id, path) {
+      const res = await fetch(path)
+      if (!res.ok) throw new Error(`Failed to load ${path}`)
+      document.getElementById(id).innerHTML = await res.text()
+    }
+
+    // Load partials
+    await inject('navbar', '../navbar.html')
+    await inject('sidebar', '../sidebar.html')
+  </script>
 
 </body>
 </html>
