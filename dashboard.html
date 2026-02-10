@@ -32,7 +32,9 @@
     }
 
     // Load partials
-    await inject('navbar', '../navbar.html')
+    const url = new URL('../navbar.html', import.meta.url);
+    console.log('Loading:', url.href);
+    await inject('navbar', '../components/navbar.html')
     await inject('sidebar', '../sidebar.html')
   </script>
 
